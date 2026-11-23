@@ -1,12 +1,14 @@
-
 import { Point } from "./Point.js";
+import { Shape } from "./Shape.js";
 
-export class Rectangle {
+export class Rectangle extends Shape {
   constructor(
     public readonly firstPoint: Point,
     public readonly secondPoint: Point,
     public readonly thirdPoint: Point,
-  ) {}
+  ) {
+    super("Rectangle");
+  }
 
   private getSides(): { sideA: Point; sideB: Point } {
     return {
@@ -72,8 +74,6 @@ export class Rectangle {
   }
 
   isTrapezoid(): boolean {
-    // При строгом определении трапеция имеет ровно одну пару
-    // параллельных сторон. У прямоугольника таких пар две.
     return false;
   }
 }

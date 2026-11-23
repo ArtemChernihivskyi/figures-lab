@@ -1,18 +1,22 @@
 import { Point } from "../entities/Point.js";
 import { Tetrahedron } from "../entities/Tetrahedron.js";
+import { Shape } from "../entities/Shape.js";
+import { ShapeFactory } from "./ShapeFactory.js";
+import { InputDataError } from "../errors/InputDataError.js";
 
-export class TetrahedronFactory {
-  createTetrahedron(
-    x1: number, y1: number, z1: number,
-    x2: number, y2: number, z2: number,
-    x3: number, y3: number, z3: number,
-    x4: number, y4: number, z4: number,
-  ): Tetrahedron {
+export class TetrahedronFactory extends ShapeFactory {
+  createShape(values: number[]): Shape {
+    if (values.length !== 12) {
+      throw new InputDataError(
+        "Tetrahedron requires exactly 12 coordinates",
+      );
+    }
+
     return new Tetrahedron(
-      new Point(x1, y1, z1),
-      new Point(x2, y2, z2),
-      new Point(x3, y3, z3),
-      new Point(x4, y4, z4),
+      new Point(values[0], values[1], values[2]),
+      new Point(values[3], values[4], values[5]),
+      new Point(values[6], values[7], values[8]),
+      new Point(values[9], values[10], values[11]),
     );
   }
 }

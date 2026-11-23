@@ -1,13 +1,15 @@
-
 import { Point } from "./Point.js";
+import { Shape } from "./Shape.js";
 
-export class Tetrahedron {
+export class Tetrahedron extends Shape {
   constructor(
     public readonly firstPoint: Point,
     public readonly secondPoint: Point,
     public readonly thirdPoint: Point,
     public readonly fourthPoint: Point,
-  ) {}
+  ) {
+    super("Tetrahedron");
+  }
 
   private triangleArea(a: Point, b: Point, c: Point): number {
     const ab = a.subtract(b);
